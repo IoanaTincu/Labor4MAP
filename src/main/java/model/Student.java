@@ -6,9 +6,9 @@ import java.util.Objects;
 public class Student extends Person {
 
     private int totalCredits;
-    private List<Course> enrolledCourses;
+    private List<Long> enrolledCourses;
 
-    public Student(long id, String firstName, String lastName, int totalCredits, List<Course> enrolledCourses) {
+    public Student(long id, String firstName, String lastName, int totalCredits, List<Long> enrolledCourses) {
         super(id, firstName, lastName);
         this.totalCredits = totalCredits;
         this.enrolledCourses = enrolledCourses;
@@ -22,11 +22,11 @@ public class Student extends Person {
         this.totalCredits = totalCredits;
     }
 
-    public List<Course> getEnrolledCourses() {
+    public List<Long> getEnrolledCourses() {
         return enrolledCourses;
     }
 
-    public void setEnrolledCourses(List<Course> enrolledCourses) {
+    public void setEnrolledCourses(List<Long> enrolledCourses) {
         this.enrolledCourses = enrolledCourses;
     }
 

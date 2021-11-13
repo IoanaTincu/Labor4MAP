@@ -5,18 +5,18 @@ import java.util.Objects;
 
 public class Teacher extends Person {
 
-    private List<Course> courses;
+    private List<Long> courses;
 
-    public Teacher(long id, String firstName, String lastName, List<Course> courses) {
+    public Teacher(long id, String firstName, String lastName, List<Long> courses) {
         super(id, firstName, lastName);
         this.courses = courses;
     }
 
-    public List<Course> getCourses() {
+    public List<Long> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(List<Long> courses) {
         this.courses = courses;
     }
 

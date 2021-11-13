@@ -20,8 +20,8 @@ class PersonRepositoryTest {
 
     PersonRepository<Student> studentRepo = new PersonRepository<Student>();
 
-    List<Course> enrolledCourses1 = new ArrayList<>();
-    List<Course> enrolledCourses2 = new ArrayList<>();
+    List<Long> enrolledCourses1 = new ArrayList<>();
+    List<Long> enrolledCourses2 = new ArrayList<>();
     Student student1 = new Student(410, "Stefan", "Gorea", 17, enrolledCourses1);
     Student student2 = new Student(113, "Luca", "Tompea", 28, enrolledCourses1);
 

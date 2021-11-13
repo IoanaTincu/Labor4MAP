@@ -7,15 +7,15 @@ public class Course {
 
     private long id;
     private String name;
-    private Person teacher;
+    private long teacherId;
     private int maxEnrollment;
-    private List<Student> studentsEnrolled;
+    private List<Long> studentsEnrolled;
     private int credits;
 
-    public Course(long id, String name, Person teacher, int maxEnrollment, List<Student> studentsEnrolled, int credits) {
+    public Course(long id, String name, long teacherId, int maxEnrollment, List<Long> studentsEnrolled, int credits) {
         this.id = id;
         this.name = name;
-        this.teacher = teacher;
+        this.teacherId = teacherId;
         this.maxEnrollment = maxEnrollment;
         this.studentsEnrolled = studentsEnrolled;
         this.credits = credits;
@@ -37,12 +37,12 @@ public class Course {
         this.name = name;
     }
 
-    public Person getTeacher() {
-        return teacher;
+    public Long getTeacherId() {
+        return teacherId;
     }
 
-    public void setTeacher(Person teacher) {
-        this.teacher = teacher;
+    public void setTeacherId(long teacherId) {
+        this.teacherId = teacherId;
     }
 
     public int getMaxEnrollment() {
@@ -53,11 +53,11 @@ public class Course {
         this.maxEnrollment = maxEnrollment;
     }
 
-    public List<Student> getStudentsEnrolled() {
+    public List<Long> getStudentsEnrolled() {
         return studentsEnrolled;
     }
 
-    public void setStudentsEnrolled(List<Student> studentsEnrolled) {
+    public void setStudentsEnrolled(List<Long> studentsEnrolled) {
         this.studentsEnrolled = studentsEnrolled;
     }
 
@@ -74,7 +74,7 @@ public class Course {
         return "Course{" +
                 "name='" + name + '\'' +
                 ", courseId=" + id +
-                ", teacher=" + '\'' + teacher.getFirstName() + " " + teacher.getLastName() + '\'' +
+                ", teacher=" + teacherId +
                 ", maxEnrollment=" + maxEnrollment +
                 ", studentsEnrolled=" + studentsEnrolled +
                 ", credits=" + credits +
@@ -86,11 +86,11 @@ public class Course {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
-        return id == course.id && maxEnrollment == course.maxEnrollment && credits == course.credits && Objects.equals(name, course.name) && Objects.equals(teacher, course.teacher) && Objects.equals(studentsEnrolled, course.studentsEnrolled);
+        return id == course.id && maxEnrollment == course.maxEnrollment && credits == course.credits && Objects.equals(name, course.name) && Objects.equals(teacherId, course.teacherId) && Objects.equals(studentsEnrolled, course.studentsEnrolled);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, teacher, maxEnrollment, studentsEnrolled, credits);
+        return Objects.hash(id, name, teacherId, maxEnrollment, studentsEnrolled, credits);
     }
 }

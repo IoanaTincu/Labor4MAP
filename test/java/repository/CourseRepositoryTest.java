@@ -18,12 +18,12 @@ class CourseRepositoryTest {
 
     CourseRepository courseRepo = new CourseRepository();
 
-    List<Course> listCourses1 = new ArrayList<>();
-    List<Student> listStudents1 = new ArrayList<>();
+    List<Long> listCourses1 = new ArrayList<>();
+    List<Long> listStudents1 = new ArrayList<>();
     Teacher teacher1 = new Teacher(52, "Mugur", "Acu", listCourses1);
     Teacher teacher2 = new Teacher(11, "Mugur", "Acu", listCourses1);
-    Course course1 = new Course(653, "Analiza matematica", teacher1, 48, listStudents1, 6);
-    Course course2 = new Course(1226, "Algoritmi fundamentali", teacher2, 27, listStudents1, 3);
+    Course course1 = new Course(653, "Analiza matematica", teacher1.getId(), 48, listStudents1, 6);
+    Course course2 = new Course(1226, "Algoritmi fundamentali", teacher2.getId(), 27, listStudents1, 3);
 
     @BeforeEach
     public void setUp() throws NullValueException {
@@ -90,7 +90,7 @@ class CourseRepositoryTest {
     @Test
     @Description("Should return null because the course has been updated")
     void update_course_found() throws NullValueException {
-        Course newCourse1 = new Course(653, "Analiza matematica", teacher1, 48, listStudents1, 6);
+        Course newCourse1 = new Course(653, "Analiza matematica", teacher1.getId(), 48, listStudents1, 6);
         assertNull(courseRepo.update(newCourse1));
         assertEquals(courseRepo.findOne(newCourse1.getId()), newCourse1);
     }
