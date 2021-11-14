@@ -14,6 +14,9 @@ public class Student extends Person {
         this.enrolledCourses = enrolledCourses;
     }
 
+    public Student() {
+    }
+
     public int getTotalCredits() {
         return totalCredits;
     }
