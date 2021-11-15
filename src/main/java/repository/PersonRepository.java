@@ -4,6 +4,8 @@ import exceptions.NullValueException;
 import model.Course;
 import model.Person;
 
+import java.io.IOException;
+
 /**
  * Repository Class that manages all CRUD operations for a Person Entity
  *
@@ -27,7 +29,7 @@ public class PersonRepository<T extends Person> extends InMemoryRepository<T> {
     }
 
     @Override
-    public T save(T entity) throws NullValueException {
+    public T save(T entity) throws NullValueException, IOException {
         if (entity == null)
             throw new NullValueException("Invalid entity");
         for (Person person : repoList)
@@ -38,7 +40,7 @@ public class PersonRepository<T extends Person> extends InMemoryRepository<T> {
     }
 
     @Override
-    public T delete(Long id) throws NullValueException {
+    public T delete(Long id) throws NullValueException, IOException {
         if (id == null)
             throw new NullValueException("Invalid entity");
         for (Person person : repoList)
@@ -50,7 +52,7 @@ public class PersonRepository<T extends Person> extends InMemoryRepository<T> {
     }
 
     @Override
-    public T update(T entity) throws NullValueException {
+    public T update(T entity) throws NullValueException, IOException {
         if (entity == null)
             throw new NullValueException("Invalid entity");
         for (Person person : repoList)

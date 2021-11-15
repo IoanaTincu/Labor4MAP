@@ -1,0 +1,15 @@
+[ {
+  "id" : 653,
+  "name" : "Analiza matematica",
+  "teacherId" : 52,
+  "maxEnrollment" : 48,
+  "studentsEnrolled" : [ ],
+  "credits" : 6
+}, {
+  "id" : 1226,
+  "name" : "Matematici speciale",
+  "teacherId" : 1200,
+  "maxEnrollment" : 31,
+  "studentsEnrolled" : [ 6, 3 ],
+  "credits" : 15
+} ]

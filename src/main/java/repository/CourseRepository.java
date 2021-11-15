@@ -3,6 +3,8 @@ package repository;
 import exceptions.NullValueException;
 import model.Course;
 
+import java.io.IOException;
+
 /**
  * Repository Class that manages all CRUD operations for a Course Entity
  */
@@ -24,7 +26,7 @@ public class CourseRepository extends InMemoryRepository<Course> {
     }
 
     @Override
-    public Course save(Course entity) throws NullValueException {
+    public Course save(Course entity) throws NullValueException, IOException {
         if (entity == null)
             throw new NullValueException("Invalid entity");
         for (Course course : repoList)
@@ -35,7 +37,7 @@ public class CourseRepository extends InMemoryRepository<Course> {
     }
 
     @Override
-    public Course delete(Long id) throws NullValueException {
+    public Course delete(Long id) throws NullValueException, IOException {
         if (id == null)
             throw new NullValueException("Invalid entity");
         for (Course course : repoList)
@@ -47,7 +49,7 @@ public class CourseRepository extends InMemoryRepository<Course> {
     }
 
     @Override
-    public Course update(Course entity) throws NullValueException {
+    public Course update(Course entity) throws NullValueException, IOException {
         if (entity == null)
             throw new NullValueException("Invalid entity");
         for (Course course : repoList)

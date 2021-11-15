@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.PersonRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ class PersonRepositoryTest {
     Student student2 = new Student(113, "Luca", "Tompea", 28, enrolledCourses1);
 
     @BeforeEach
-    public void setUp() throws NullValueException {
+    public void setUp() throws NullValueException, IOException {
         studentRepo.save(student1);
     }
 
@@ -50,7 +51,7 @@ class PersonRepositoryTest {
 
     @Test
     @Description("Should return null because the parameter object has been saved")
-    void save_student_not_found() throws NullValueException {
+    void save_student_not_found() throws NullValueException, IOException {
         assertNull(studentRepo.save(student2));
         assertEquals(studentRepo.size(), 2);
         assertEquals(studentRepo.findOne(student2.getId()), student2);
@@ -58,7 +59,7 @@ class PersonRepositoryTest {
 
     @Test
     @Description("Should return the parameter object because the student already exists in the repository")
-    void save_student_found() throws NullValueException {
+    void save_student_found() throws NullValueException, IOException {
         assertEquals(studentRepo.save(student1), student1);
     }
 
@@ -70,14 +71,14 @@ class PersonRepositoryTest {
 
     @Test
     @Description("Should return the parameter object because the student has been deleted")
-    void delete_student_found() throws NullValueException {
+    void delete_student_found() throws NullValueException, IOException {
         assertEquals(studentRepo.delete(student1.getId()), student1);
         assertEquals(studentRepo.size(), 0);
     }
 
     @Test
     @Description("Should return null because there is no student with the same id in the repository")
-    void delete_student_not_found() throws NullValueException {
+    void delete_student_not_found() throws NullValueException, IOException {
         assertEquals(studentRepo.delete(student2.getId()), null);
     }
 
@@ -89,7 +90,7 @@ class PersonRepositoryTest {
 
     @Test
     @Description("Should return null because the student has been updated")
-    void update_student_found() throws NullValueException {
+    void update_student_found() throws NullValueException, IOException {
         Student newStudent1 = new Student(410, "Stefan", "Blaga", 17, enrolledCourses1);
         assertNull(studentRepo.update(newStudent1));
         assertEquals(studentRepo.findOne(newStudent1.getId()), newStudent1);
@@ -97,7 +98,7 @@ class PersonRepositoryTest {
 
     @Test
     @Description("Should return the parameter object because there is no student with the same id in the repository")
-    void update_student_not_found() throws NullValueException {
+    void update_student_not_found() throws NullValueException, IOException {
         assertEquals(studentRepo.update(student2), student2);
     }
 

@@ -2,6 +2,7 @@ package repository;
 
 import exceptions.NullValueException;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public interface ICrudRepository<T> {
      * @param entity to be saved
      * @return null or the already existing entity
      */
-    T save(T entity) throws NullValueException;
+    T save(T entity) throws NullValueException, IOException;
 
     /**
      * removes the entity with the specified id.
@@ -41,7 +42,7 @@ public interface ICrudRepository<T> {
      * @param id -the id of the entity to be removed
      * @return the removed entity or null
      */
-    T delete(Long id) throws NullValueException;
+    T delete(Long id) throws NullValueException, IOException;
 
     /**
      * Updates the entity in the repository with the entity got as parameter.
@@ -50,7 +51,7 @@ public interface ICrudRepository<T> {
      * @param entity to be updated with
      * @return null or the not existing entity
      */
-    T update(T entity) throws NullValueException;
+    T update(T entity) throws NullValueException, IOException;
 
     /**
      * counts the elements from the repoList

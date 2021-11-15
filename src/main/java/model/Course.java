@@ -21,6 +21,9 @@ public class Course {
         this.credits = credits;
     }
 
+    public Course() {
+    }
+
     public long getId() {
         return id;
     }

@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StudentFileRepository extends PersonRepository<Student> implements IFileRepository<Student> {
+public class CourseFileRepository extends CourseRepository implements IFileRepository<Course> {
 
     private String fileName;
 
-    public StudentFileRepository(String fileName) {
+    public CourseFileRepository(String fileName) {
         this.fileName = fileName;
     }
 
@@ -30,20 +30,22 @@ public class StudentFileRepository extends PersonRepository<Student> implements 
         JsonNode parser = objectMapper.readTree(reader);
 
         for (JsonNode node : parser) {
-            Student student = new Student();
+            Course course = new Course();
 
-            student.setId(node.path("id").asLong());
-            student.setFirstName(node.path("firstName").asText());
-            student.setLastName(node.path("lastName").asText());
-            student.setTotalCredits(node.path("totalCredits").asInt());
+            course.setId(node.path("id").asLong());
+            course.setName(node.path("name").asText());
+            course.setTeacherId(node.path("teacherId").asLong());
+            course.setMaxEnrollment(node.path("maxEnrollment").asInt());
 
-            JsonNode jsonArray = node.get("enrolledCourses");
+            JsonNode jsonArray = node.get("studentsEnrolled");
             if (jsonArray.size() > 0)
-                student.setEnrolledCourses(IFileRepository.convertJsonArray(jsonArray));
+                course.setStudentsEnrolled(IFileRepository.convertJsonArray(jsonArray));
             else
-                student.setEnrolledCourses(new ArrayList<>());
+                course.setStudentsEnrolled(new ArrayList<>());
 
-            repoList.add(student);
+            course.setCredits(node.path("credits").asInt());
+
+            repoList.add(course);
         }
 
         reader.close();
@@ -57,23 +59,23 @@ public class StudentFileRepository extends PersonRepository<Student> implements 
     }
 
     @Override
-    public Student save(Student entity) throws NullValueException, IOException {
-        Student student = super.save(entity);
+    public Course save(Course entity) throws NullValueException, IOException {
+        Course course = super.save(entity);
         writeDataToFile();
-        return student;
+        return course;
     }
 
     @Override
-    public Student delete(Long id) throws NullValueException, IOException {
-        Student student = super.delete(id);
+    public Course delete(Long id) throws NullValueException, IOException {
+        Course course = super.delete(id);
         writeDataToFile();
-        return student;
+        return course;
     }
 
     @Override
-    public Student update(Student entity) throws NullValueException, IOException {
-        Student student = super.update(entity);
+    public Course update(Course entity) throws NullValueException, IOException {
+        Course course = super.update(entity);
         writeDataToFile();
-        return student;
+        return course;
     }
 }

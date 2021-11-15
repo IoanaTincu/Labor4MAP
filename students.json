@@ -1,0 +1,13 @@
+[ {
+  "id" : 113,
+  "firstName" : "Luca",
+  "lastName" : "Tompea",
+  "totalCredits" : 32,
+  "enrolledCourses" : [ 4, 1, 7 ]
+}, {
+  "id" : 1052,
+  "firstName" : "Marcu",
+  "lastName" : "Andrei",
+  "totalCredits" : 15,
+  "enrolledCourses" : [ 1, 9 ]
+} ]

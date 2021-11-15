@@ -12,6 +12,9 @@ public class Teacher extends Person {
         this.courses = courses;
     }
 
+    public Teacher() {
+    }
+
     public List<Long> getCourses() {
         return courses;
     }

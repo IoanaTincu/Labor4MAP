@@ -8,18 +8,18 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import exceptions.NullValueException;
 import model.Course;
-import model.Student;
+import model.Teacher;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class StudentFileRepository extends PersonRepository<Student> implements IFileRepository<Student> {
+public class TeacherFileRepository extends PersonRepository<Teacher> implements IFileRepository<Teacher> {
 
     private String fileName;
 
-    public StudentFileRepository(String fileName) {
+    public TeacherFileRepository(String fileName) {
         this.fileName = fileName;
     }
 
@@ -30,20 +30,19 @@ public class StudentFileRepository extends PersonRepository<Student> implements 
         JsonNode parser = objectMapper.readTree(reader);
 
         for (JsonNode node : parser) {
-            Student student = new Student();
+            Teacher teacher = new Teacher();
 
-            student.setId(node.path("id").asLong());
-            student.setFirstName(node.path("firstName").asText());
-            student.setLastName(node.path("lastName").asText());
-            student.setTotalCredits(node.path("totalCredits").asInt());
+            teacher.setId(node.path("id").asLong());
+            teacher.setFirstName(node.path("firstName").asText());
+            teacher.setLastName(node.path("lastName").asText());
 
-            JsonNode jsonArray = node.get("enrolledCourses");
+            JsonNode jsonArray = node.get("courses");
             if (jsonArray.size() > 0)
-                student.setEnrolledCourses(IFileRepository.convertJsonArray(jsonArray));
+                teacher.setCourses(IFileRepository.convertJsonArray(jsonArray));
             else
-                student.setEnrolledCourses(new ArrayList<>());
+                teacher.setCourses(new ArrayList<>());
 
-            repoList.add(student);
+            repoList.add(teacher);
         }
 
         reader.close();
@@ -57,23 +56,23 @@ public class StudentFileRepository extends PersonRepository<Student> implements 
     }
 
     @Override
-    public Student save(Student entity) throws NullValueException, IOException {
-        Student student = super.save(entity);
+    public Teacher save(Teacher entity) throws NullValueException, IOException {
+        Teacher teacher = super.save(entity);
         writeDataToFile();
-        return student;
+        return teacher;
     }
 
     @Override
-    public Student delete(Long id) throws NullValueException, IOException {
-        Student student = super.delete(id);
+    public Teacher delete(Long id) throws NullValueException, IOException {
+        Teacher teacher = super.delete(id);
         writeDataToFile();
-        return student;
+        return teacher;
     }
 
     @Override
-    public Student update(Student entity) throws NullValueException, IOException {
-        Student student = super.update(entity);
+    public Teacher update(Teacher entity) throws NullValueException, IOException {
+        Teacher teacher = super.update(entity);
         writeDataToFile();
-        return student;
+        return teacher;
     }
 }
