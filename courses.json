@@ -3,7 +3,7 @@
   "name" : "Analiza matematica",
   "teacherId" : 52,
   "maxEnrollment" : 48,
-  "studentsEnrolled" : [ ],
+  "studentsEnrolled" : [ 752 ],
   "credits" : 6
 }, {
   "id" : 1226,

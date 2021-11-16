@@ -2,7 +2,7 @@
   "id" : 113,
   "firstName" : "Luca",
   "lastName" : "Tompea",
-  "totalCredits" : 32,
+  "totalCredits" : 12,
   "enrolledCourses" : [ 4, 1, 7 ]
 }, {
   "id" : 1052,
@@ -10,4 +10,10 @@
   "lastName" : "Andrei",
   "totalCredits" : 15,
   "enrolledCourses" : [ 1, 9 ]
+}, {
+  "id" : 752,
+  "firstName" : "Laurentiu",
+  "lastName" : "Ilie",
+  "totalCredits" : 16,
+  "enrolledCourses" : [ ]
 } ]

@@ -1,6 +1,8 @@
 package com.company;
 
-import controller.Controller;
+import controller.CourseController;
+import controller.StudentController;
+import exceptions.InvalidCourseException;
 import exceptions.NullValueException;
 import model.Course;
 import model.Student;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException, NullValueException {
+    public static void main(String[] args) throws IOException, NullValueException, InvalidCourseException {
         // write your code here
 
         StudentFileRepository studentFileRepository = new StudentFileRepository("students.json");
@@ -25,13 +27,13 @@ public class Main {
         List<Student> studentList = studentFileRepository.findAll();
         for (Student student : studentList)
             System.out.println(student.toString());
-        studentList.get(0).setTotalCredits(32);
+        // studentList.get(0).setTotalCredits(32);
         studentFileRepository.writeDataToFile();
 
-        Student student1 = new Student(1052, "Marcu", "Andrei", 15, new ArrayList<>(Arrays.asList(new Long(1), new Long(3))));
+        Student student1 = new Student(1052, "Marcu", "Andrei", 15, new ArrayList<>(Arrays.asList(1L, 3L)));
         studentFileRepository.save(student1);
 
-        System.out.println(studentFileRepository.delete(new Long(1143)));
+        System.out.println(studentFileRepository.delete(1143L));
 
         // studentFileRepository.update(new Student(1052, "Marcu", "Andrei", 15, new ArrayList<>(Arrays.asList(new Long(1), new Long(9)))));
 
@@ -51,25 +53,35 @@ public class Main {
             System.out.println(course.toString());
         courseFileRepository.writeDataToFile();
 
-        courseFileRepository.update(new Course(1226, "Matematici speciale", 1200, 31, new ArrayList<>(Arrays.asList(new Long(6), new Long(3))), 15));
+        courseFileRepository.update(new Course(1226, "Matematici speciale", 1200, 31, new ArrayList<>(Arrays.asList(6L, 3L)), 15));
 
         System.out.println("Students by total credits");
-        Controller controller = new Controller(studentFileRepository, teacherFileRepository, courseFileRepository);
-        List<Student> sortedStudentsByTotalCredits = controller.sortStudentsByTotalCredits();
+        StudentController studentController = new StudentController(studentFileRepository, courseFileRepository);
+        List<Student> sortedStudentsByTotalCredits = studentController.sortStudentsByTotalCredits();
         for (Student student : sortedStudentsByTotalCredits)
             System.out.println(student.toString());
 
-        List<Course> sortedCoursesByStudentsEnrolled = controller.sortCoursesByStudentsEnrolled();
+        CourseController courseController = new CourseController(courseFileRepository, studentFileRepository, teacherFileRepository);
+        List<Course> sortedCoursesByStudentsEnrolled = courseController.sortCoursesByStudentsEnrolled();
         for (Course course : sortedCoursesByStudentsEnrolled)
             System.out.println(course.toString());
 
         System.out.println("Filter");
-        List<Student> filteredStudentsAttendingCourse = controller.filterStudentsAttendingCourse(new Long(9));
+        List<Student> filteredStudentsAttendingCourse = studentController.filterStudentsAttendingCourse(9L);
         for (Student student : filteredStudentsAttendingCourse)
             System.out.println(student.toString());
 
-        List<Course> filteredCourses = controller.filterCoursesWithSpecifiedCredits(6);
+        List<Course> filteredCourses = courseController.filterCoursesWithSpecifiedCredits(6);
         for (Course course : filteredCourses)
             System.out.println(course.toString());
+
+
+        //-----------------------------------------------------------------------------------------------
+
+        System.out.println("StudentController");
+        Student student2 = new Student(811, "Laurentiu", "Ilie", 16, new ArrayList<>(Arrays.asList(653L, 855L)));
+        // System.out.println(studentController.save(student2));
+
+        System.out.println(studentController.delete(811L));
     }
 }
