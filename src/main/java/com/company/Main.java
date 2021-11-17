@@ -82,6 +82,12 @@ public class Main {
         Student student2 = new Student(811, "Laurentiu", "Ilie", 16, new ArrayList<>(Arrays.asList(653L, 855L)));
         // System.out.println(studentController.save(student2));
 
-        System.out.println(studentController.delete(811L));
+        // System.out.println(studentController.delete(811L));
+
+        View view = new View(studentController, courseController);
+        //view.sortStudentsByTotalCredits();
+        //view.filterStudentsAttendingCourse();
+        //view.findOne();
+        view.runStudentMenu();
     }
 }

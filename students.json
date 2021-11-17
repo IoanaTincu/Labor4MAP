@@ -16,4 +16,10 @@
   "lastName" : "Ilie",
   "totalCredits" : 16,
   "enrolledCourses" : [ ]
+}, {
+  "id" : 1216,
+  "firstName" : "Matei",
+  "lastName" : "Stroia",
+  "totalCredits" : 11,
+  "enrolledCourses" : [ ]
 } ]

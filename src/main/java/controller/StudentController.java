@@ -50,14 +50,23 @@ public class StudentController {
                 .collect(Collectors.toList());
     }
 
-    Student findOne(Long id) throws NullValueException {
+    public Student findOne(Long id) throws NullValueException {
         return studentFileRepo.findOne(id);
     }
 
-    List<Student> findAll() {
+    public List<Student> findAll() {
         return studentFileRepo.findAll();
     }
 
+    /**
+     * saves the parameter object in repoList. Returns the result of method save in PersonRepository<T>
+     *
+     * @param student to be saved
+     * @return result of method save in PersonRepository<T>
+     * @throws NullValueException if the parameter object is null
+     * @throws IOException if the file is invalid
+     * @throws InvalidCourseException student has a course in courseList that doesn't exist in courseRepolist
+     */
     public Student save(Student student) throws NullValueException, IOException, InvalidCourseException {
         if (student == null)
             throw new NullValueException("Invalid entity");
@@ -86,6 +95,14 @@ public class StudentController {
         return result;
     }
 
+    /**
+     * deletes the object with the parameter id from repoList. Returns the result of method delete in PersonRepository<T>
+     *
+     * @param id of the object to be deleted
+     * @return result of method delete in PersonRepository<T>
+     * @throws IOException if the file is invalid
+     * @throws NullValueException if the parameter object is null
+     */
     public Student delete(Long id) throws IOException, NullValueException {
         if (id == null)
             throw new NullValueException("Invalid entity");

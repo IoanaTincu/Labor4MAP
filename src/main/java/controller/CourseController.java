@@ -1,24 +1,26 @@
 package controller;
 
+import exceptions.NullValueException;
 import model.Course;
 import model.Student;
 import model.Teacher;
-import repository.CourseRepository;
-import repository.PersonRepository;
+import repository.CourseFileRepository;
+import repository.StudentFileRepository;
+import repository.TeacherFileRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CourseController {
 
-    private CourseRepository courseRepo;
-    private PersonRepository<Student> studentRepo;
-    private PersonRepository<Teacher> teacherRepo;
+    private CourseFileRepository courseFileRepo;
+    private StudentFileRepository studentFileRepo;
+    private TeacherFileRepository teacherFileRepo;
 
-    public CourseController(CourseRepository courseRepo, PersonRepository<Student> studentRepo, PersonRepository<Teacher> teacherRepo) {
-        this.courseRepo = courseRepo;
-        this.studentRepo = studentRepo;
-        this.teacherRepo = teacherRepo;
+    public CourseController(CourseFileRepository courseFleRepo, StudentFileRepository studentFileRepo, TeacherFileRepository teacherFileRepo) {
+        this.courseFileRepo = courseFileRepo;
+        this.studentFileRepo = studentFileRepo;
+        this.teacherFileRepo = teacherFileRepo;
     }
 
     /**
@@ -27,7 +29,7 @@ public class CourseController {
      * @return sorted list of students
      */
     public List<Course> sortCoursesByStudentsEnrolled() {
-        return courseRepo.findAll().stream()
+        return courseFileRepo.findAll().stream()
                 .sorted((course, otherCourse) -> otherCourse.getStudentsEnrolled().size() - course.getStudentsEnrolled().size())
                 .collect(Collectors.toList());
     }
@@ -39,8 +41,23 @@ public class CourseController {
      * @return list of courses
      */
     public List<Course> filterCoursesWithSpecifiedCredits(int credits) {
-        return courseRepo.findAll().stream()
+        return courseFileRepo.findAll().stream()
                 .filter(course -> course.getCredits() == credits)
                 .collect(Collectors.toList());
+    }
+
+    public Course findOne(Long id) throws NullValueException {
+        return courseFileRepo.findOne(id);
+    }
+
+    public List<Course> findAll() {
+        return courseFileRepo.findAll();
+    }
+
+    public Course save(Course course) throws NullValueException {
+        if (course == null)
+            throw new NullValueException("Invalid entity");
+
+
     }
 }
