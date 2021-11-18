@@ -21,5 +21,11 @@
   "firstName" : "Matei",
   "lastName" : "Stroia",
   "totalCredits" : 11,
+  "enrolledCourses" : [ 1141 ]
+}, {
+  "id" : 522,
+  "firstName" : "Oprina",
+  "lastName" : "Cezar Stefan",
+  "totalCredits" : 51,
   "enrolledCourses" : [ ]
 } ]

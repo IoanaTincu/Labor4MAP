@@ -1,15 +1,15 @@
 [ {
+  "id" : 1141,
+  "name" : "Algebra liniara",
+  "teacherId" : 1200,
+  "maxEnrollment" : 45,
+  "studentsEnrolled" : [ 1216 ],
+  "credits" : 18
+}, {
   "id" : 653,
   "name" : "Analiza matematica",
-  "teacherId" : 52,
-  "maxEnrollment" : 48,
-  "studentsEnrolled" : [ 752, 651 ],
-  "credits" : 6
-}, {
-  "id" : 1226,
-  "name" : "Matematici speciale",
   "teacherId" : 1200,
-  "maxEnrollment" : 31,
-  "studentsEnrolled" : [ 6, 3 ],
-  "credits" : 15
+  "maxEnrollment" : 45,
+  "studentsEnrolled" : [ 1216 ],
+  "credits" : 11
 } ]

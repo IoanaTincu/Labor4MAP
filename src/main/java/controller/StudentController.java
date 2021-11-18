@@ -74,7 +74,8 @@ public class StudentController {
         List<Long> enrolledCourses = student.getEnrolledCourses();
         if (enrolledCourses.size() == 0) {
             Student result = studentFileRepo.save(student);
-            studentFileRepo.writeDataToFile();
+            if (result == null)
+                studentFileRepo.writeDataToFile();
             return result;
         }
 
@@ -85,13 +86,15 @@ public class StudentController {
                 throw new InvalidCourseException("Invalid course");
 
         Student result = studentFileRepo.save(student);
-        for (Long courseId : enrolledCourses) {
-            Course course = courseFileRepo.findOne(courseId);
-            course.getStudentsEnrolled().add(student.getId());
-        }
+        if (result == null) {
+            for (Long courseId : enrolledCourses) {
+                Course course = courseFileRepo.findOne(courseId);
+                course.getStudentsEnrolled().add(student.getId());
+            }
 
-        studentFileRepo.writeDataToFile();
-        courseFileRepo.writeDataToFile();
+            studentFileRepo.writeDataToFile();
+            courseFileRepo.writeDataToFile();
+        }
         return result;
     }
 
