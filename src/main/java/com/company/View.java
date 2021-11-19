@@ -309,7 +309,7 @@ public class View {
     }
 
     public void printCourseMenu() {
-        System.out.println("1. Sort students by number of students enrolled");
+        System.out.println("1. Sort courses by number of students enrolled");
         System.out.println("2. Filter courses with specified number of credits");
         System.out.println("3. Find course by id");
         System.out.println("4. Find all courses");

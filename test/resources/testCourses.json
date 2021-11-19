@@ -10,12 +10,12 @@
   "name" : "Analiza matematica",
   "teacherId" : 1200,
   "maxEnrollment" : 45,
-  "studentsEnrolled" : [ 1216 ],
+  "studentsEnrolled" : [ 1216, 113 ],
   "credits" : 11
 }, {
   "id" : 807,
   "name" : "Programare distribuita",
-  "teacherId" : 1200,
+  "teacherId" : 120,
   "maxEnrollment" : 88,
   "studentsEnrolled" : [ ],
   "credits" : 8
